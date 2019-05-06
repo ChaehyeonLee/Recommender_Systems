@@ -9,7 +9,7 @@ I'm going to started with summarizing what I learned from 'Building Recommender 
 # Index
 - [1. Getting Started](https://github.com/ChaehyeonLee/Recommender_Systems/wiki/1.-Getting-Started)
 - [2. Introduction to Python](https://github.com/ChaehyeonLee/Recommender_Systems/wiki/2.-Introduction-to-Python)
-- [3. Evaluating Recommender Systems]
+- [3. Evaluating Recommender Systems](https://github.com/ChaehyeonLee/Recommender_Systems/wiki/3.-Evaluating-Recommender-Systems)
 - [4. A Recommender Engine Framework]
 - [5. Content-Based Filtering]
 - [6. Neighborhood-Based Collaborative Filtering]

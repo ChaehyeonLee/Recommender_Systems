@@ -3,8 +3,8 @@
 This repository is for study recommender systems.  
 [ 추천시스템을 공부하기 위한 repository입니다. ]
   
-I'm going to started with summarizing what I learned from 'Building Recommender Systems with Machine Learning and AI' course in LinkedIn  
-[ LinkedIn의 'Building Recommender Systems with Machine Learning and AI' 코스를 공부하며 정리한 내용 및 코드를 기초로 시작합니다. ]
+I'm going to started with summarizing what I learned from 'Building Recommender Systems with Machine Learning and AI' course in LinkedIn, so I can refer to it later when I'm building my own recommender system.  
+[ 추천시스템을 만들때 참고하기 위해 LinkedIn의 'Building Recommender Systems with Machine Learning and AI' 코스를 통해 공부한 내용 및 코드를 요약하면서 시작합니다. ]
 
 # Index
 - [1. Getting Started](https://github.com/ChaehyeonLee/Recommender_Systems/wiki/1.-Getting-Started)

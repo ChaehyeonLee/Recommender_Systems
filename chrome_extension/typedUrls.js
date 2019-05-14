@@ -32,13 +32,15 @@ function onAnchorClick(event) {
     // To look for history items visited in the last week,
     // subtract a week of microseconds from the current time.
     var microsecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
+    var microsecondsPerThreeMonth = microsecondsPerWeek * 4 * 3;
     var oneWeekAgo = (new Date).getTime() - microsecondsPerWeek;
+    var threeMonthAgo = (new Date).getTime() - microsecondsPerThreeMonth;
     // Track the number of callbacks from chrome.history.getVisits()
     // that we expect to get.  When it reaches zero, we have all results.
     var numRequestsOutstanding = 0;
     chrome.history.search({
         'text': '',              // Return every history item....
-        'startTime': oneWeekAgo  // that was accessed less than one week ago.
+        'startTime': threeMonthAgo  // that was accessed less than one week ago.
       },
       function(historyItems) {
         // For each history item, get details on all visits.
@@ -66,9 +68,21 @@ function onAnchorClick(event) {
     var processVisits = function(url, visitItems) {
       for (var i = 0, ie = visitItems.length; i < ie; ++i) {
         // Ignore items unless the user typed the URL.
-        if (visitItems[i].transition != 'typed') {
-          continue;
+        // if (visitItems[i].transition != 'typed') {
+        //   continue;
+        // }
+        visitTimeDateObj = new Date(visitItems[i].visitTime)
+        weekday = visitTimeDateObj.getDay();
+        timeInterval = parseInt(visitTimeDateObj.getHours() / 3);
+
+        if ((new Date()).getDay() != weekday) {
+            continue;
         }
+
+        if (parseInt(((new Date()).getHours()) / 3) != timeInterval) {
+            continue;
+        }
+        
         if (!urlToCount[url]) {
           urlToCount[url] = 0;
         }
@@ -80,6 +94,7 @@ function onAnchorClick(event) {
       if (!--numRequestsOutstanding) {
         onAllVisitsProcessed();
       }
+
     };
     // This function is called when we have the final list of URls to display.
     var onAllVisitsProcessed = function() {

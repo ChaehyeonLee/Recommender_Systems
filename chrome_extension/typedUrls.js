@@ -32,7 +32,7 @@ function onAnchorClick(event) {
     // To look for history items visited in the last week,
     // subtract a week of microseconds from the current time.
     var microsecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
-    var microsecondsPerThreeMonth = microsecondsPerWeek * 4 * 3;
+    var microsecondsPerThreeMonth = microsecondsPerWeek * 4 * 6;
     var oneWeekAgo = (new Date).getTime() - microsecondsPerWeek;
     var threeMonthAgo = (new Date).getTime() - microsecondsPerThreeMonth;
     // Track the number of callbacks from chrome.history.getVisits()
@@ -40,7 +40,8 @@ function onAnchorClick(event) {
     var numRequestsOutstanding = 0;
     chrome.history.search({
         'text': '',              // Return every history item....
-        'startTime': threeMonthAgo  // that was accessed less than one week ago.
+        'startTime': threeMonthAgo,  // that was accessed less than one week ago.
+        'maxResults': 5000
       },
       function(historyItems) {
         // For each history item, get details on all visits.
@@ -75,13 +76,23 @@ function onAnchorClick(event) {
         weekday = visitTimeDateObj.getDay();
         timeInterval = parseInt(visitTimeDateObj.getHours() / 3);
 
-        if ((new Date()).getDay() != weekday) {
+        // if ((new Date()).getDay() != weekday) {
+        //     continue;
+        // }
+
+        // if (parseInt(((new Date()).getHours()) / 3) != timeInterval) {
+        //     continue;
+        // }
+
+
+        if ((new Date()).getDay() != 3) {
             continue;
         }
 
-        if (parseInt(((new Date()).getHours()) / 3) != timeInterval) {
+        if (7 != timeInterval) {
             continue;
         }
+        
         
         if (!urlToCount[url]) {
           urlToCount[url] = 0;
